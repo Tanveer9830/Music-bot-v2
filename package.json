@@ -1,0 +1,40 @@
+{
+  "name": "tanveer-music-bot-v3",
+  "version": "3.0.0",
+  "description": "TANVEER MUSIC BOT V3 — a premium Discord music bot using Riffy and Lavalink. Made by Tanveer (Discord: tanveer5637).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node tests/run-tests.js",
+    "doctor": "node scripts/doctor.js",
+    "doctor:live": "node scripts/doctor.js --live",
+    "install:bot": "bash install.sh",
+    "branding": "node -e \"require('./utils/branding.js').printBanner()\"",
+    "service:install": "sudo bash install.sh --service",
+    "service:start": "sudo systemctl start tanveer-music-bot",
+    "service:stop": "sudo systemctl stop tanveer-music-bot",
+    "service:restart": "sudo systemctl restart tanveer-music-bot",
+    "service:status": "sudo systemctl status tanveer-music-bot",
+    "logs": "sudo journalctl -u tanveer-music-bot -f"
+  },
+  "author": "Tanveer (https://github.com/Tanveer9830)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "bot",
+    "riffy",
+    "lavalink",
+    "tanveer",
+    "tanveer5637",
+    "discord.js"
+  ],
+  "dependencies": {
+    "discord.js": "^14.25.1",
+    "riffy": "^1.0.12",
+    "riffy-spotify": "^1.0.2"
+  }
+}

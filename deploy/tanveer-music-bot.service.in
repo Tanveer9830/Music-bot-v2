@@ -1,0 +1,54 @@
+; ============================================================================
+;  TANVEER MUSIC BOT V3 — systemd unit template
+;  Made by Tanveer  ·  Discord: tanveer5637
+;
+;  This file is a TEMPLATE. `install.sh` substitutes the @@PLACEHOLDERS@@ and
+;  writes the result to /etc/systemd/system/tanveer-music-bot.service.
+;  You can also edit the installed copy directly, then run:
+;      sudo systemctl daemon-reload && sudo systemctl restart tanveer-music-bot
+; ============================================================================
+
+[Unit]
+Description=TANVEER MUSIC BOT V3 (Discord music bot by Tanveer / tanveer5637)
+Documentation=file://@@APP_DIR@@/README.md
+After=network-online.target
+Wants=network-online.target
+; Lavalink is usually a separate process; we only wait on the network so the
+; bot boots even when Lavalink needs a few extra seconds to come up.
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=@@RUN_USER@@
+Group=@@RUN_GROUP@@
+WorkingDirectory=@@APP_DIR@@
+
+; Secrets live in .env (mode 600). EnvironmentFile keeps them out of the unit
+; file and out of `systemctl show` / process listings.
+EnvironmentFile=@@APP_DIR@@/.env
+
+ExecStart=@@NODE_BIN@@ @@APP_DIR@@/@@ENTRY_POINT@@
+
+; Restart on crash, but back off so a bad token cannot hammer the Discord API.
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=25
+KillSignal=SIGTERM
+
+; --- Logging (view with: journalctl -u tanveer-music-bot -f) ---
+StandardOutput=journal
+StandardError=journal
+
+; --- Hardening: the bot needs no privileges beyond its own directory ---
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target
