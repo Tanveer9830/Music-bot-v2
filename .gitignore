@@ -1,0 +1,74 @@
+# ==========================================================================
+#  TANVEER MUSIC BOT V3 — Git ignore rules
+#  Made by Tanveer · Discord: tanveer5637
+# ==========================================================================
+
+# ── Secrets — NEVER commit these ──────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+config.local.js
+config.local.*.js
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+secrets/
+.secrets/
+
+# ── Dependencies ──────────────────────────────────────────────────────────
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/install-state.gz
+
+# ── Runtime data that must survive on the server but not live in Git ──────
+data/
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.log
+logs/
+*.pid
+*.seed
+
+# ── Lavalink (often vendored next to the bot) ─────────────────────────────
+lavalink/
+Lavalink.jar
+application.yml
+application.yaml
+plugins/
+
+# ── Build output & caches ─────────────────────────────────────────────────
+dist/
+build/
+out/
+coverage/
+.cache/
+.npm/
+.eslintcache
+*.tsbuildinfo
+
+# ── Editor / OS noise ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Distribution archives (source lives in the repo, not in a zip) ───────
+*.zip
+*.tar.gz
+*.tgz
+music-bot-v3.zip
